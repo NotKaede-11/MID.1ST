@@ -146,13 +146,23 @@ class GradeCalculator {
         data.javaBasics = Math.min(parseFloat(data.javaBasics), 40);
         data.introJs = Math.min(parseFloat(data.introJs), 40);
         
-        const quizAverage = (data.essay + data.pvm + data.javaBasics + data.introJs) / 4;
+        // Calculate total quiz points earned
+        const totalQuizPointsEarned = data.essay + data.pvm + data.javaBasics + data.introJs;
+        
+        // Calculate maximum possible quiz points
+        const maxQuizPoints = 100 + 60 + 40 + 40; // Max essay + max PVM + max Java Basics + max Intro JS
+        
+        // Calculate quiz percentage
+        const quizPercentage = (totalQuizPointsEarned / maxQuizPoints) * 100;
+        
         const attendance = Math.max(0, 100 - (data.absences * 10));
-        const classStanding = (0.6 * quizAverage) + (0.4 * attendance);
+        const classStanding = (0.6 * quizPercentage) + (0.4 * attendance);
         const prelimGrade = (0.6 * data.prelimExam) + (0.4 * classStanding);
         
         return {
-            quizAverage,
+            totalQuizPointsEarned,
+            maxQuizPoints,
+            quizPercentage,
             attendance,
             classStanding,
             prelimGrade,
@@ -170,16 +180,28 @@ class GradeCalculator {
         data.mp3 = Math.min(parseFloat(data.mp3), 100);
         data.mp3Docu = Math.min(parseFloat(data.mp3Docu), 100);
         
+        // Calculate prelim exam with weighted components
         const prelimExam = (0.2 * data.java1) + (0.3 * data.java2) + 
                          (0.2 * data.js1) + (0.3 * data.js2);
-        const labWork = (data.mp1 + data.mp2 + data.mp3 + data.mp3Docu) / 4;
+        
+        // Calculate total lab work points earned
+        const labPointsEarned = data.mp1 + data.mp2 + data.mp3 + data.mp3Docu;
+        
+        // Calculate maximum possible lab work points
+        const maxLabPoints = 400; // 4 lab assignments × 100 points each
+        
+        // Calculate lab work percentage
+        const labWorkPercentage = (labPointsEarned / maxLabPoints) * 100;
+        
         const attendance = Math.max(0, 100 - (data.absences * 10));
-        const classStanding = (0.6 * labWork) + (0.4 * attendance);
+        const classStanding = (0.6 * labWorkPercentage) + (0.4 * attendance);
         const prelimGrade = (0.6 * prelimExam) + (0.4 * classStanding);
         
         return {
             prelimExam,
-            labWork,
+            labPointsEarned,
+            maxLabPoints,
+            labWorkPercentage,
             attendance,
             classStanding,
             prelimGrade,
@@ -228,8 +250,12 @@ class GradeCalculator {
         if (subject === 'lecture') {
             html += `
                 <div class="result-item">
-                    <span>Quiz Average:</span>
-                    <span>${results.quizAverage.toFixed(2)}</span>
+                    <span>Quiz Points:</span>
+                    <span>${results.totalQuizPointsEarned.toFixed(2)} / ${results.maxQuizPoints}</span>
+                </div>
+                <div class="result-item">
+                    <span>Quiz Percentage:</span>
+                    <span>${results.quizPercentage.toFixed(2)}%</span>
                 </div>
                 <div class="result-item">
                     <span>Attendance:</span>
@@ -251,8 +277,12 @@ class GradeCalculator {
                     <span>${results.prelimExam.toFixed(2)}</span>
                 </div>
                 <div class="result-item">
-                    <span>Lab Work:</span>
-                    <span>${results.labWork.toFixed(2)}</span>
+                    <span>Lab Points:</span>
+                    <span>${results.labPointsEarned.toFixed(2)} / ${results.maxLabPoints}</span>
+                </div>
+                <div class="result-item">
+                    <span>Lab Percentage:</span>
+                    <span>${results.labWorkPercentage.toFixed(2)}%</span>
                 </div>
                 <div class="result-item">
                     <span>Attendance:</span>
