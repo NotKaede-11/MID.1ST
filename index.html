@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Grade Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link type="image/x-icon" rel="icon" href="favicon/wintah.jpg">
+</head>
+<body>
+    <div id="background-animation"></div>
+    <div class="container">
+        <header>
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-btn">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            <h1>Prelim Grade Calculator</h1>
+            <p class="description">The midterm lab grading for Programming 2 is split into two parts. The lecture grade is 60% from the exam and 40% from class standing (quizzes and attendance, with a 10% deduction per absence, failing after 4). The lab grade is similarly divided: 60% from exams (various Java and JS assessments) and 40% from class standing (lab work and attendance).</p>
+        </header>
+        <div class="main-content">
+            <div class="calculator-section">
+                <div class="subject-tabs">
+                    <div class="tab-button subject-tab active" data-subject="lecture">
+                        Lecture
+                        <span class="tab-description">Programming 2 Theory</span>
+                    </div>
+                    <div class="tab-button subject-tab" data-subject="laboratory">
+                        Laboratory
+                        <span class="tab-description">Programming 2 Practice</span>
+                    </div>
+                </div>
+                <form class="calculator-form" data-subject="lecture">
+                    <h3>Prelim Exam</h3>
+                    <div class="input-group">
+                        <label>Prelim Exam Score:</label>
+                        <input type="number" name="prelimExam" max="100" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <h3>Quizzes</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Essay:</label>
+                            <input type="number" name="essay" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>PVM:</label>
+                            <input type="number" name="pvm" max="60" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Java Basics:</label>
+                            <input type="number" name="javaBasics" max="40" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>Intro to JS:</label>
+                            <input type="number" name="introJs" max="40" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <h3>Attendance</h3>
+                    <div class="input-group">
+                        <label>Number of Absences:</label>
+                        <input type="number" name="absences" min="0" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <button type="submit" class="calculate-btn">Calculate Grade</button>
+                </form>
+                <form class="calculator-form" data-subject="laboratory" style="display: none;">
+                    <h3>Prelim Exam Components</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Java 1:</label>
+                            <input type="number" name="java1" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>Java 2:</label>
+                            <input type="number" name="java2" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>JS 1:</label>
+                            <input type="number" name="js1" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>JS 2:</label>
+                            <input type="number" name="js2" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <h3>Lab Work</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>MP1:</label>
+                            <input type="number" name="mp1" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>MP2:</label>
+                            <input type="number" name="mp2" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="input-grid center-extra">
+                        <div class="input-group">
+                            <label>MP3:</label>
+                            <input type="number" name="mp3" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label>MP3 Documentation:</label>
+                            <input type="number" name="mp3Docu" max="100" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <h3>Attendance</h3>
+                    <div class="input-group">
+                        <label>Number of Absences:</label>
+                        <input type="number" name="absences" min="0" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <button type="submit" class="calculate-btn">Calculate Grade</button>
+                </form>
+            </div>
+            <div class="results-panel" id="results"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
