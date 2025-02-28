@@ -145,14 +145,11 @@ class GradeCalculator {
         data.pvm = Math.min(parseFloat(data.pvm), 60);
         data.javaBasics = Math.min(parseFloat(data.javaBasics), 40);
         data.introJs = Math.min(parseFloat(data.introJs), 40);
-        
-        // Calculate total quiz points earned
+
         const totalQuizPointsEarned = data.essay + data.pvm + data.javaBasics + data.introJs;
-        
-        // Calculate maximum possible quiz points
-        const maxQuizPoints = 100 + 60 + 40 + 40; // Max essay + max PVM + max Java Basics + max Intro JS
-        
-        // Calculate quiz percentage
+
+        const maxQuizPoints = 100 + 60 + 40 + 40; 
+
         const quizPercentage = (totalQuizPointsEarned / maxQuizPoints) * 100;
         
         const attendance = Math.max(0, 100 - (data.absences * 10));
@@ -179,18 +176,14 @@ class GradeCalculator {
         data.mp2 = Math.min(parseFloat(data.mp2), 100);
         data.mp3 = Math.min(parseFloat(data.mp3), 100);
         data.mp3Docu = Math.min(parseFloat(data.mp3Docu), 100);
-        
-        // Calculate prelim exam with weighted components
+
         const prelimExam = (0.2 * data.java1) + (0.3 * data.java2) + 
                          (0.2 * data.js1) + (0.3 * data.js2);
-        
-        // Calculate total lab work points earned
+
         const labPointsEarned = data.mp1 + data.mp2 + data.mp3 + data.mp3Docu;
-        
-        // Calculate maximum possible lab work points
-        const maxLabPoints = 400; // 4 lab assignments × 100 points each
-        
-        // Calculate lab work percentage
+
+        const maxLabPoints = 400; 
+
         const labWorkPercentage = (labPointsEarned / maxLabPoints) * 100;
         
         const attendance = Math.max(0, 100 - (data.absences * 10));
