@@ -76,6 +76,7 @@ header {
     display: flex;
     gap: 30px;
     min-height: auto;
+    position: relative; /* Add this */
 }
 
 .calculator-section {
@@ -84,6 +85,30 @@ header {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Make it sticky */
+    top: 20px; /* Stick 20px from the top of viewport */
+    max-height: calc(100vh - 40px); /* Limit height */
+    overflow-y: auto; /* Add scrolling if needed */
+}
+
+/* Add smooth scrolling to the calculator section */
+.calculator-section {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--output-bg);
+}
+
+.calculator-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.calculator-section::-webkit-scrollbar-track {
+    background: var(--output-bg);
+    border-radius: 4px;
+}
+
+.calculator-section::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
 }
 
 .results-panel {
@@ -282,5 +307,77 @@ header {
     
     .center-extra .input-group:only-child {
         max-width: 100%;
+    }
+}
+
+.computation-details {
+    background-color: var(--output-bg);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.computation-details h3 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem; /* Increased title size */
+}
+
+.computation-section {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.computation-section h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3rem; /* Increased heading size */
+}
+
+.computation-section p {
+    margin: 5px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+    font-size: 1.2rem; /* Increased font size */
+    line-height: 1.5; /* Better line spacing */
+}
+
+/* Add these styles to the end of your CSS file */
+.attendance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.attendance-item {
+    background-color: var(--output-bg);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.attendance-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.attendance-item label {
+    cursor: pointer;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .attendance-grid {
+        grid-template-columns: 1fr;
     }
 }
